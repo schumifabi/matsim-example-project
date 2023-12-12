@@ -85,62 +85,12 @@
 		<!--some contribs:-->
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
-			<artifactId>minibus</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
 			<artifactId>otfvis</artifactId>
 			<version>${matsim.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
-			<artifactId>noise</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
-			<artifactId>roadpricing</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
-			<artifactId>taxi</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
-			<artifactId>av</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
-			<artifactId>freight</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
-			<artifactId>bicycle</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
-			<artifactId>emissions</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
 			<artifactId>application</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
-			<artifactId>vsp</artifactId>
-			<version>${matsim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim.contrib</groupId>
-			<artifactId>sbb-extensions</artifactId>
 			<version>${matsim.version}</version>
 		</dependency>
 <!--		<dependency>-->
@@ -179,11 +129,12 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<finalName>matsim-bundle</finalName>
 							<transformers>
 								<!-- The following sets the main class for the executable jar as you otherwise would with the assembly plugin -->
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Main-Class>org.matsim.gui.MATSimGUI</Main-Class>
+										<Main-Class>org.matsim.project.RunMatsim</Main-Class>
 										<Specification-Vendor>org.matsim</Specification-Vendor>
 										<Implementation-Vendor>org.matsim</Implementation-Vendor>
 										<Implementation-Version>${project.version}</Implementation-Version>
@@ -213,44 +164,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-            <profile>
-            <id>dockerready</id>
-            <build>
-                <plugins>
-                    <plugin>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <configuration>
-			<outputDirectory>${session.executionRootDirectory}/target</outputDirectory>
-			<finalName>matsim-bundle</finalName>
-			<appendAssemblyId>false</appendAssemblyId>
-                        <descriptorRefs>
-                            <descriptorRef>jar-with-dependencies</descriptorRef>
-                        </descriptorRefs>
-                        <archive>
-                            <manifest>
-                                <mainClass>org.matsim.run.RunMatsim </mainClass>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            </manifest>
-                            <manifestEntries>
-                                <Specification-Vendor>org.matsim</Specification-Vendor>
-                                <Implementation-Vendor>org.matsim</Implementation-Vendor>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>make-assembly</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                </plugins>
-            </build>
-        </profile>
-	</profiles>
 </project>

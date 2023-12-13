@@ -43,6 +43,9 @@ import org.matsim.vehicles.VehicleUtils;
 import ch.sbb.matsim.mobsim.qsim.SBBTransitModule;
 import ch.sbb.matsim.mobsim.qsim.pt.SBBTransitEngineQSimModule;
 import ch.sbb.matsim.routing.pt.raptor.SwissRailRaptorModule;
+import org.matsim.contrib.emissions.EmissionModule;
+import org.matsim.contrib.emissions.utils.EmissionsConfigGroup;
+import org.matsim.core.controler.AbstractModule;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -58,9 +61,9 @@ public class RunMatsim{
 
 		Config config;
 		if ( args==null || args.length==0 || args[0]==null ){
-			config = ConfigUtils.loadConfig( "C:\\models\\scenario-sim-6\\config.xml" );
+			config = ConfigUtils.loadConfig( "C:\\models\\scenario-sim-6\\config.xml", new EmissionsConfigGroup() );
 		} else {
-			config = ConfigUtils.loadConfig( args );
+			config = ConfigUtils.loadConfig( args, new EmissionsConfigGroup() );
 		}
 
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
@@ -77,19 +80,23 @@ public class RunMatsim{
 		
 		Controler controler = new Controler( scenario ) ;
 		
-	// possibly modify controler here
-
-//		controler.addOverridingModule( new OTFVisLiveModule() ) ;
+		// possibly modify controler here
+		// controler.addOverridingModule( new OTFVisLiveModule() ) ;
 		// To use the deterministic pt simulation (Part 1 of 2):
-		controler.addOverridingModule(new SBBTransitModule());
-
+		//controler.addOverridingModule(new SBBTransitModule());
+		controler.addOverridingModule(new AbstractModule() {
+			@Override
+			public void install() {
+				bind(EmissionModule.class).asEagerSingleton();
+			}
+		});
 		// To use the fast pt router (Part 1 of 1)
-		controler.addOverridingModule(new SwissRailRaptorModule());
+		//controler.addOverridingModule(new SwissRailRaptorModule());
 
 		// To use the deterministic pt simulation (Part 2 of 2):
-		controler.configureQSimComponents(components -> {
-					new SBBTransitEngineQSimModule().configure(components);
-				});
+		//controler.configureQSimComponents(components -> {
+		//			new SBBTransitEngineQSimModule().configure(components);
+		//		});
 		
 		// ---
 		

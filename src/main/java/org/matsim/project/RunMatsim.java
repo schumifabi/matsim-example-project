@@ -62,7 +62,7 @@ public class RunMatsim{
 			config = ConfigUtils.loadConfig( args );
 		}
 
-		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
+		//config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
 
 		// possibly modify config here
 

@@ -24,6 +24,7 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.contrib.ev.EvConfigGroup;
+import org.matsim.contrib.ev.EvModule;
 import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
@@ -43,8 +44,7 @@ import org.matsim.core.utils.collections.CollectionUtils;
 import org.matsim.vehicles.VehicleType;
 import org.matsim.vehicles.VehicleUtils;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
-import org.matsim.contrib.ev.EvConfigGroup;
-import org.matsim.contrib.ev.EvModule;
+
 import org.matsim.contrib.ev.charging.VehicleChargingHandler;
 import org.matsim.contrib.ev.routing.EvNetworkRoutingProvider;
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class RunMatsim{
 		if ( args==null || args.length==0 || args[0]==null ){
 			config = ConfigUtils.loadConfig( "scenarios/equil/config.xml", new EvConfigGroup());
 		} else {
-			config = ConfigUtils.loadConfig( args );
+			config = ConfigUtils.loadConfig( args , new EvConfigGroup());
 		}
 
 		//config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );

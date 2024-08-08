@@ -86,7 +86,13 @@
 <!--			matsim-examples dependency into "test" scope if you want to make other projects dependent on your this project here. kai,-->
 <!--			jan'21-->
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>application</artifactId>
+			<version>${matsim.version}</version>
+		</dependency>
+		
 		<!--some contribs:-->
 <!--		<dependency>-->
 <!--			<groupId>org.matsim.contrib</groupId>-->

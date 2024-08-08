@@ -45,6 +45,7 @@ public class RunMatsimApplication extends MATSimApplication {
 
 		//config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
 
+
 		// possibly modify config here
 
 		// ---
@@ -67,6 +68,7 @@ public class RunMatsimApplication extends MATSimApplication {
 		// possibly modify controler here
 
 //		controler.addOverridingModule( new OTFVisLiveModule() ) ;
+//		controler.addOverridingModule( new SimWrapperModule() ) ;
 
 
 		// ---

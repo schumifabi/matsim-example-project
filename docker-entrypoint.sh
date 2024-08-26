@@ -52,17 +52,18 @@ _check_input_directory() {
 }
 
 _check_output_directory() {
-    if [ -d "$MATSIM_OUTPUT" ] && files=$(ls -qAH -- "$MATSIM_OUTPUT") && [ -z "$files" ]; then
-        :
-    else
-        if [ $MATSIM_OUTPUT_OVERWRITE ]; then
-            printf '\n%s\n' "Note: Overwriting the (not empty) output directory."
-            sudo rm -rf $MATSIM_OUTPUT/*
-        else
-            _print_help_output
-            exit 1
-        fi
-    fi
+    printf '\n%s\n' "Note: Overwriting the output directory."
+    #if [ -d "$MATSIM_OUTPUT" ] && files=$(ls -qAH -- "$MATSIM_OUTPUT") && [ -z "$files" ]; then
+    #    :
+    #else
+    #    if [ $MATSIM_OUTPUT_OVERWRITE ]; then
+    #        printf '\n%s\n' "Note: Overwriting the (not empty) output directory."
+    #        sudo rm -rf $MATSIM_OUTPUT/*
+    #    else
+    #        _print_help_output
+    #        exit 1
+    #    fi
+    #fi
 }
 
 _print_header

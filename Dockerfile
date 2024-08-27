@@ -19,7 +19,7 @@ WORKDIR ${APP_DIR}
 USER root
 COPY --chmod=0755 docker-entrypoint.sh /opt/matsim/
 COPY --from=build ${APP_DIR}/*.txt ./resources/
-COPY --from=build ${APP_DIR}/target/matsim-bundle.jar /opt/matsim/matsim.jar
+COPY --from=build ${APP_DIR}/target/*-jar-with-dependencies.jar /opt/matsim/matsim.jar
 RUN chmod +x /opt/matsim/matsim.jar
 ENV MATSIM_HOME=${APP_DIR} \
     MATSIM_INPUT=${APP_DIR}/data/input \

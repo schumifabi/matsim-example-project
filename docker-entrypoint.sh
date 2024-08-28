@@ -71,5 +71,5 @@ _check_input_directory
 _check_output_directory
 echo "$COMMIT" > $MATSIM_OUTPUT/code-version.txt
 printf '%s\n' ""
-exec java -XX:ErrorFile=/opt/matsim/data/output/hs_err_pid_%p.log -XX:+UseG1GC $INIRAM $MAXRAM -jar /opt/matsim/matsim.jar /opt/matsim/data/input/config.xml
+exec java -XX:ErrorFile=/opt/matsim/data/output/hs_err_pid_%p.log $INIRAM $MAXRAM -jar /opt/matsim/matsim.jar /opt/matsim/data/input/config.xml
 
